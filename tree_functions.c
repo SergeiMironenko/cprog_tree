@@ -97,7 +97,7 @@ void print_tree(Tree *tree)
     {
         // Выяснение, новая строка (newline = 1) или нет (newline = 0)
         newline = 0;
-        for (int i = 0; i < maxlevel && queue_size >= pow_2; i++)
+        for (int i = 0; i <= maxlevel && queue_size >= pow_2; i++)
         {
             if (queue_size == pow_2)
             {
@@ -240,6 +240,7 @@ void print_tree(Tree *tree)
         }
     }
     free(queue);
+    printf("\n");
 }
 
 // Освобождение дерева
@@ -250,5 +251,30 @@ void free_tree(Tree *tree)
         free_tree(tree->right);
         free_tree(tree->left);
         free(tree);
+    }
+}
+
+// Балансировка дерева
+void balance_tree(Tree **tree)
+{
+    if (*tree)
+    {
+        while (max_level((*tree)->left) - max_level((*tree)->right) >= 2)
+        {
+            Tree *tmp = (*tree)->left;
+            (*tree)->left = tmp->right;
+            tmp->right = *tree;
+            *tree = tmp;
+        }
+
+        while (max_level((*tree)->right) - max_level((*tree)->left) >= 2)
+        {
+            Tree *tmp = (*tree)->right;
+            (*tree)->right = tmp->left;
+            tmp->left = *tree;
+            *tree = tmp;
+        }
+        balance_tree(&((*tree)->left));
+        balance_tree(&((*tree)->right));
     }
 }

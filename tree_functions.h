@@ -16,6 +16,7 @@ int max_level_node(Tree *tree, int level);  // Глубина узла
 int max_level(Tree *tree);  // Максимальная глубина дерева
 void print_tree(Tree *tree);  // Вывод дерева
 void free_tree(Tree *tree);  // Освобождение дерева
+void balance_tree(Tree **tree);  // Балансировка дерева
 
 
 
