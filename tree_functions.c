@@ -27,10 +27,15 @@ Tree *add_tree(Tree *root, int val)
                 if (node->left) node = node->left;
                 else { node->left = new_node; break; }
             }
-            else 
+            else if (val > node->val)
             {
                 if (node->right) node = node->right;
                 else { node->right = new_node; break; }
+            }
+            else
+            {
+                printf("(!) Данное значение не добавлено, т к уже имеется в дереве.\n");
+                break;
             }
         }
     }

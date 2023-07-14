@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "tree_functions.h"
 
-void load_test_data_1(Tree *root)
+Tree *load_test_data_1(Tree *root)
 {
     root = add_tree(root, 5);
 
@@ -26,7 +26,7 @@ void load_test_data_1(Tree *root)
     root = add_tree(root, 80);
 }
 
-void load_test_data_2(Tree *root)
+Tree *load_test_data_2(Tree *root)
 {
     root = add_tree(root, 6);
     root = add_tree(root, 5);
@@ -43,12 +43,6 @@ void run()
     int n = 0;
     char c = '\n';
 
-    // root = add_tree(root, 1);
-    // root = add_tree(root, 2);
-    // root = add_tree(root, -1);
-    // root = add_tree(root, 4);
-    // print_tree(root);
-
     while (stay)
     {
         printf("----------------------------\n");
@@ -56,6 +50,8 @@ void run()
         printf("1 - добавить узел в дерево\n");
         printf("2 - вывести дерево\n");
         printf("3 - сбалансировать дерево\n");
+        printf("4 - загрузить тестовый набор 1\n");
+        printf("5 - загрузить тестовый набор 2\n");
         printf("q - выход\n> ");
 
         while (c != '\n') c = getchar();
@@ -74,8 +70,15 @@ void run()
             case '3':
                 balance_tree(&root);
                 break;
+            case '4':
+                root = load_test_data_1(root);
+                break;
+            case '5':
+                root = load_test_data_2(root);
+                break;
             default:
                 stay = 0;
+                break;
         }
     }
     free_tree(root);
